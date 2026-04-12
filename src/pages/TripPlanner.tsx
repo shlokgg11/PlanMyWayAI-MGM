@@ -18,6 +18,7 @@ import ItineraryMap from '@/components/ItineraryMap';
 import { generateItineraryPDF } from '@/lib/pdfGenerator';
 import { supabase } from '@/lib/supabase';
 import Navbar from '@/components/Navbar';
+import ChatBot from '@/components/ChatBot';
 
 interface Activity {
   time: string;
@@ -417,6 +418,7 @@ export default function TripPlanner() {
           </div>
         )}
       </div>
+      <ChatBot />
     </div>
   );
 }

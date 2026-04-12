@@ -271,9 +271,11 @@ function generateGenericItinerary(
     destination,
     duration: `${days} Day${days > 1 ? "s" : ""} / ${Math.max(days - 1, 1)} Night${days > 1 ? "s" : ""}`,
     budget: formatCurrency(budget),
-    summary: feasibilityNote
-      ? feasibilityNote
-      : `Discover ${destination} in ${days} days with a plan tailored to your interests: ${interestList.join(", ")}.`,
+    summary:
+      `TEST BACKEND LIVE - ` +
+      (feasibilityNote
+        ? feasibilityNote
+        : `Discover ${destination} in ${days} days with a plan tailored to your interests: ${interestList.join(", ")}.`),
     locations: [
       {
         name: `${destination} City Center`,
@@ -357,7 +359,9 @@ function generateKnownItinerary(
     destination,
     duration: `${days} Day${days > 1 ? "s" : ""} / ${Math.max(days - 1, 1)} Night${days > 1 ? "s" : ""}`,
     budget: formatCurrency(budget),
-    summary: feasibilityNote ? `${data.summary} ${feasibilityNote}` : data.summary,
+    summary:
+      `TEST BACKEND LIVE - ` +
+      (feasibilityNote ? `${data.summary} ${feasibilityNote}` : data.summary),
     locations: data.locations.slice(0, Math.min(days + 1, data.locations.length)),
     days: dayPlans,
     tips: [
