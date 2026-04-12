@@ -175,7 +175,12 @@ function getInterestList(interests: string): string[] {
   return list.length > 0 ? list : ["sightseeing", "food", "culture"];
 }
 
-function getFeasibilityNote(destination: string, days: number, budget: number, minDailyBudget: number): string | null {
+function getFeasibilityNote(
+  destination: string,
+  days: number,
+  budget: number,
+  minDailyBudget: number
+): string | null {
   const recommended = days * minDailyBudget;
   if (budget >= recommended) return null;
 
@@ -184,63 +189,67 @@ function getFeasibilityNote(destination: string, days: number, budget: number, m
   )}.`;
 }
 
-function buildBudgetAwareCosts(perDayBudget: number): number[] {
-  if (perDayBudget <= 1000) {
-    return [0.08, 0.12, 0.1, 0.12, 0.1];
-  }
-  if (perDayBudget <= 2500) {
-    return [0.1, 0.18, 0.14, 0.18, 0.14];
-  }
-  return [0.12, 0.22, 0.16, 0.22, 0.16];
-}
-
-function generateLowBudgetActivities(destination: string, day: number, perDayBudget: number, interests: string[]): Activity[] {
-  const costRatios = buildBudgetAwareCosts(perDayBudget);
-
+function generateLowBudgetActivities(
+  destination: string,
+  day: number,
+  perDayBudget: number,
+  interests: string[]
+): Activity[] {
   const templates = [
     {
       time: "8:00 AM",
       activity: `Budget breakfast and local area walk`,
       location: `${destination} local neighborhood`,
-      cost: formatCurrency(perDayBudget * costRatios[0]),
     },
     {
       time: "10:30 AM",
       activity: `Visit a free or low-cost ${interests[day % interests.length]} spot`,
       location: `${destination} city attraction`,
-      cost: formatCurrency(perDayBudget * costRatios[1]),
     },
     {
       time: "1:30 PM",
       activity: `Affordable local lunch`,
       location: `${destination} budget eatery`,
-      cost: formatCurrency(perDayBudget * costRatios[2]),
     },
     {
       time: "4:00 PM",
       activity: `Explore local market / public viewpoint / walking trail`,
       location: `${destination}`,
-      cost: formatCurrency(perDayBudget * costRatios[3]),
     },
     {
       time: "7:30 PM",
       activity: `Simple dinner and rest`,
       location: `${destination}`,
-      cost: formatCurrency(perDayBudget * costRatios[4]),
     },
   ];
 
-  return templates;
+  const activityCount = templates.length;
+  const perActivityBudget = perDayBudget / activityCount;
+
+  return templates.map((item) => ({
+    ...item,
+    cost: formatCurrency(perActivityBudget),
+  }));
 }
 
-function generateGenericItinerary(destination: string, days: number, budget: number, interests: string): Itinerary {
+function generateGenericItinerary(
+  destination: string,
+  days: number,
+  budget: number,
+  interests: string
+): Itinerary {
   const interestList = getInterestList(interests);
   const perDayBudget = Math.max(200, budget / days);
   const dayPlans: Day[] = [];
 
   for (let i = 1; i <= days; i++) {
     const isLast = i === days;
-    const activities = generateLowBudgetActivities(destination, i, perDayBudget, interestList);
+    const activities = generateLowBudgetActivities(
+      destination,
+      i,
+      perDayBudget,
+      interestList
+    );
 
     dayPlans.push({
       day: i,
@@ -250,7 +259,12 @@ function generateGenericItinerary(destination: string, days: number, budget: num
   }
 
   const genericMinDailyBudget = 2500;
-  const feasibilityNote = getFeasibilityNote(destination, days, budget, genericMinDailyBudget);
+  const feasibilityNote = getFeasibilityNote(
+    destination,
+    days,
+    budget,
+    genericMinDailyBudget
+  );
 
   return {
     title: `${days} Days in ${destination}`,
@@ -261,9 +275,24 @@ function generateGenericItinerary(destination: string, days: number, budget: num
       ? feasibilityNote
       : `Discover ${destination} in ${days} days with a plan tailored to your interests: ${interestList.join(", ")}.`,
     locations: [
-      { name: `${destination} City Center`, lat: 0, lng: 0, description: "Central area of the destination" },
-      { name: `${destination} Local Market`, lat: 0, lng: 0, description: "Budget shopping and food area" },
-      { name: `${destination} Main Attraction`, lat: 0, lng: 0, description: "Popular sightseeing area" },
+      {
+        name: `${destination} City Center`,
+        lat: 0,
+        lng: 0,
+        description: "Central area of the destination",
+      },
+      {
+        name: `${destination} Local Market`,
+        lat: 0,
+        lng: 0,
+        description: "Budget shopping and food area",
+      },
+      {
+        name: `${destination} Main Attraction`,
+        lat: 0,
+        lng: 0,
+        description: "Popular sightseeing area",
+      },
     ],
     days: dayPlans,
     tips: [
@@ -271,7 +300,11 @@ function generateGenericItinerary(destination: string, days: number, budget: num
       "Choose simple local eateries over premium restaurants.",
       "Book budget accommodation in advance.",
       "Keep some cash for small vendors and local transport.",
-      ...(feasibilityNote ? ["Consider increasing the budget or reducing the duration for a more comfortable experience."] : []),
+      ...(feasibilityNote
+        ? [
+            "Consider increasing the budget or reducing the duration for a more comfortable experience.",
+          ]
+        : []),
     ],
     totalEstimatedCost: formatCurrency(budget),
   };
@@ -286,26 +319,29 @@ function generateKnownItinerary(
 ): Itinerary {
   const data = DESTINATION_DATA[destKey];
   const perDayBudget = Math.max(200, budget / days);
-  const feasibilityNote = getFeasibilityNote(destination, days, budget, data.minimumRecommendedDailyBudget);
-  const costRatios = buildBudgetAwareCosts(perDayBudget);
+  const feasibilityNote = getFeasibilityNote(
+    destination,
+    days,
+    budget,
+    data.minimumRecommendedDailyBudget
+  );
 
   const dayPlans: Day[] = [];
 
   for (let i = 0; i < days; i++) {
     const dayActivities = data.activities[i % data.activities.length];
+    const activityCount = dayActivities.length;
+    const perActivityBudget = perDayBudget / activityCount;
 
     const activities: Activity[] = dayActivities.map((act, j) => {
       const times = ["7:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"];
-      const ratio = costRatios[j] ?? 0.1;
 
       return {
         time: times[j] || `${8 + j * 2}:00 AM`,
         activity:
-          feasibilityNote && j === 1
-            ? `${act} (budget version)`
-            : act,
+          feasibilityNote && j === 1 ? `${act} (budget version)` : act,
         location: data.locations[j % data.locations.length]?.name || destination,
-        cost: formatCurrency(perDayBudget * ratio),
+        cost: formatCurrency(perActivityBudget),
       };
     });
 
@@ -326,7 +362,9 @@ function generateKnownItinerary(
     days: dayPlans,
     tips: [
       ...data.tips,
-      ...(feasibilityNote ? ["This plan has been adjusted to stay within your stated budget."] : []),
+      ...(feasibilityNote
+        ? ["This plan has been adjusted to stay within your stated budget."]
+        : []),
     ],
     totalEstimatedCost: formatCurrency(budget),
   };
