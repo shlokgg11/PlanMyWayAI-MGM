@@ -38,16 +38,21 @@ interface Itinerary {
   totalEstimatedCost: string;
 }
 
-const DESTINATION_DATA: Record<string, {
+type DestinationInfo = {
   coords: [number, number];
   summary: string;
+  minimumRecommendedDailyBudget: number;
   locations: { name: string; lat: number; lng: number; description: string }[];
   activities: string[][];
   tips: string[];
-}> = {
+};
+
+const DESTINATION_DATA: Record<string, DestinationInfo> = {
   kerala: {
     coords: [10.8505, 76.2711],
-    summary: "Kerala, God's Own Country, enchants visitors with serene backwaters, lush hill stations, pristine beaches, and rich cultural heritage. This tropical paradise offers a perfect blend of nature, wellness, and history.",
+    summary:
+      "Kerala, God's Own Country, enchants visitors with serene backwaters, lush hill stations, pristine beaches, and rich cultural heritage. This tropical paradise offers a perfect blend of nature, wellness, and history.",
+    minimumRecommendedDailyBudget: 2500,
     locations: [
       { name: "Alleppey Backwaters", lat: 9.4981, lng: 76.3388, description: "Famous houseboat cruise destination" },
       { name: "Munnar", lat: 10.0889, lng: 77.0595, description: "Scenic hill station with tea gardens" },
@@ -55,88 +60,90 @@ const DESTINATION_DATA: Record<string, {
       { name: "Periyar Wildlife Sanctuary", lat: 9.4641, lng: 77.1723, description: "Tiger reserve and elephant sightings" },
     ],
     activities: [
-      ["Arrive and check into houseboat", "Alleppey backwaters cruise", "Sunset on the backwaters", "Seafood dinner on the houseboat"],
-      ["Munnar tea plantation tour", "Eravikulam National Park", "Tea museum visit", "Sunset at Top Station viewpoint"],
+      ["Arrive and check into budget stay", "Alleppey backwaters cruise (shared)", "Sunset on the backwaters", "Simple local dinner"],
+      ["Munnar tea plantation tour", "Eravikulam National Park", "Tea museum visit", "Sunset viewpoint"],
       ["Fort Kochi heritage walk", "Chinese fishing nets viewing", "St. Francis Church", "Mattancherry Palace"],
-      ["Ayurvedic spa and wellness session", "Periyar lake boat safari", "Spice plantation visit"],
-      ["Local market shopping", "Kathakali dance performance", "Farewell seafood dinner"],
+      ["Ayurvedic wellness session", "Periyar lake boat safari", "Spice plantation visit"],
+      ["Local market shopping", "Kathakali dance performance", "Farewell dinner"],
     ],
     tips: [
-      "Book houseboats in advance, especially during peak season (Oct–Feb)",
-      "Carry mosquito repellent for backwater stays",
-      "Try the traditional Kerala Sadhya meal on a banana leaf",
-      "Best time to visit: October to March for pleasant weather",
-      "Hire a local guide in Periyar for better wildlife sightings",
-      "Carry light cotton clothes — it's hot and humid throughout the year",
+      "Book stays in advance during peak season (Oct–Feb).",
+      "Carry mosquito repellent for backwater areas.",
+      "Try a traditional Kerala Sadhya meal.",
+      "Best time to visit: October to March.",
+      "Carry light cotton clothes for most of the year.",
     ],
   },
   goa: {
     coords: [15.2993, 74.124],
-    summary: "Goa is India's premier beach destination, offering golden sands, azure waters, vibrant nightlife, Portuguese colonial architecture, and some of India's freshest seafood. A perfect mix of relaxation and adventure.",
+    summary:
+      "Goa is India's premier beach destination, offering golden sands, azure waters, vibrant nightlife, Portuguese colonial architecture, and fresh seafood. A perfect mix of relaxation and adventure.",
+    minimumRecommendedDailyBudget: 3000,
     locations: [
       { name: "Baga Beach", lat: 15.5523, lng: 73.7518, description: "Popular beach with water sports and nightlife" },
       { name: "Old Goa", lat: 15.5007, lng: 73.9175, description: "UNESCO heritage Portuguese churches" },
       { name: "Dudhsagar Falls", lat: 15.3144, lng: 74.3151, description: "Spectacular four-tiered waterfall" },
-      { name: "Palolem Beach", lat: 15.0100, lng: 74.0237, description: "Serene crescent-shaped beach in South Goa" },
+      { name: "Palolem Beach", lat: 15.01, lng: 74.0237, description: "Serene crescent-shaped beach in South Goa" },
     ],
     activities: [
-      ["Arrive and beach check-in", "Baga/Calangute beach walk", "Beach shacks dinner", "Nightlife at Tito's Lane"],
-      ["Old Goa UNESCO churches", "Basilica of Bom Jesus", "Se Cathedral", "Fontainhas Latin Quarter"],
-      ["Dudhsagar Falls jeep safari", "Spice plantation lunch", "Swimming at the falls", "Evening at Anjuna flea market"],
-      ["Water sports: parasailing, jet ski, banana boat", "Dolphin spotting cruise", "Sunset at Vagator Beach"],
+      ["Arrive and check into budget stay", "Beach walk", "Beach shack dinner", "Relaxed evening"],
+      ["Old Goa churches tour", "Basilica of Bom Jesus", "Se Cathedral", "Fontainhas walk"],
+      ["Dudhsagar shared trip", "Spice plantation lunch", "Evening local market"],
+      ["Water sports (budget choice)", "Dolphin spotting cruise", "Sunset at the beach"],
     ],
     tips: [
-      "November to February is peak season — book accommodation early",
-      "Rent a scooter for easy beach-hopping across North and South Goa",
-      "Try sorpotel, fish curry rice, and bebinca (local Goan dessert)",
-      "Keep valuables locked in your hotel — crowded beaches can attract pickpockets",
-      "Dudhsagar Falls are best visited July to October (monsoon season)",
+      "November to February is peak season.",
+      "A scooter is useful for moving around cheaply.",
+      "Try fish curry rice and bebinca.",
+      "Keep valuables safe at crowded beaches.",
     ],
   },
   amritsar: {
     coords: [31.634, 74.8723],
-    summary: "Amritsar is the spiritual heart of Sikhism and one of India's most iconic cities. The magnificent Golden Temple, the emotional Wagah Border ceremony, and some of the country's most delicious street food await you.",
+    summary:
+      "Amritsar is the spiritual heart of Sikhism and one of India's most iconic cities. The Golden Temple, Wagah Border ceremony, and legendary street food make it unforgettable.",
+    minimumRecommendedDailyBudget: 1800,
     locations: [
-      { name: "Golden Temple (Harmandir Sahib)", lat: 31.6200, lng: 74.8765, description: "Holiest Sikh shrine, open 24 hours" },
-      { name: "Wagah Border", lat: 31.6046, lng: 74.5768, description: "Daily flag-lowering ceremony at India-Pakistan border" },
-      { name: "Jallianwala Bagh", lat: 31.6218, lng: 74.8800, description: "Historic memorial garden" },
-      { name: "Durgiana Temple", lat: 31.6264, lng: 74.8737, description: "Beautiful Hindu temple on a lake" },
+      { name: "Golden Temple", lat: 31.62, lng: 74.8765, description: "Holiest Sikh shrine" },
+      { name: "Wagah Border", lat: 31.6046, lng: 74.5768, description: "Flag-lowering ceremony" },
+      { name: "Jallianwala Bagh", lat: 31.6218, lng: 74.88, description: "Historic memorial garden" },
+      { name: "Durgiana Temple", lat: 31.6264, lng: 74.8737, description: "Temple complex on a lake" },
     ],
     activities: [
-      ["Arrive in Amritsar", "Golden Temple evening visit and Palki Sahib ceremony", "Langar (community meal) at the temple", "Lawrence Road street food tour"],
-      ["Early morning Golden Temple visit at sunrise", "Jallianwala Bagh memorial", "Partition Museum", "Wagah Border flag ceremony at sunset"],
-      ["Local market (Hall Bazaar) shopping", "Durgiana Temple visit", "Amritsari kulcha breakfast", "Depart"],
+      ["Arrive in Amritsar", "Golden Temple visit", "Langar meal", "Street food walk"],
+      ["Sunrise temple visit", "Jallianwala Bagh", "Partition Museum", "Wagah Border ceremony"],
+      ["Local market shopping", "Durgiana Temple", "Kulcha breakfast", "Departure"],
     ],
     tips: [
-      "Cover your head and remove shoes before entering the Golden Temple",
-      "Arrive at Wagah Border 2 hours early to get a good seat",
-      "Must-try foods: Amritsari kulcha, lassi at Kulcha Land, fish fry",
-      "The Golden Temple is most magical at night — plan an evening visit",
-      "Photography is allowed everywhere except inside the sanctum sanctorum",
+      "Cover your head at the Golden Temple.",
+      "Reach Wagah early for good seats.",
+      "Try Amritsari kulcha and lassi.",
+      "The Golden Temple is especially beautiful at night.",
     ],
   },
   manali: {
     coords: [32.2396, 77.1887],
-    summary: "Manali is the adventure capital of North India, nestled in the Himalayas with stunning snow-capped peaks, ancient temples, adventure sports, and the legendary Rohtang Pass. Perfect for nature lovers and thrill-seekers.",
+    summary:
+      "Manali is a Himalayan getaway known for mountain views, temples, adventure sports, and cozy cafés. Great for both nature lovers and thrill-seekers.",
+    minimumRecommendedDailyBudget: 2800,
     locations: [
-      { name: "Rohtang Pass", lat: 32.3696, lng: 77.2403, description: "High altitude pass with snow throughout the year" },
-      { name: "Solang Valley", lat: 32.3195, lng: 77.1542, description: "Adventure sports hub: skiing, zorbing, paragliding" },
-      { name: "Hadimba Temple", lat: 32.2380, lng: 77.1771, description: "Ancient wooden temple surrounded by cedar forest" },
-      { name: "Old Manali", lat: 32.2600, lng: 77.1723, description: "Charming village with cafes and backpacker culture" },
+      { name: "Rohtang Pass", lat: 32.3696, lng: 77.2403, description: "High altitude pass with snow" },
+      { name: "Solang Valley", lat: 32.3195, lng: 77.1542, description: "Adventure sports destination" },
+      { name: "Hadimba Temple", lat: 32.238, lng: 77.1771, description: "Historic temple in cedar forest" },
+      { name: "Old Manali", lat: 32.26, lng: 77.1723, description: "Village area with cafés" },
     ],
     activities: [
-      ["Arrive in Manali", "Mall Road stroll", "Hadimba Temple visit", "Old Manali cafes"],
-      ["Rohtang Pass day trip", "Snow play and photography", "Beas River rafting", "Local market"],
-      ["Solang Valley adventure sports", "Paragliding", "Vashisht hot springs", "Sunset views"],
-      ["Naggar Castle visit", "Jana Falls trek", "Mall Road shopping"],
-      ["Local monastery visit", "Departure preparation"],
+      ["Arrive in Manali", "Mall Road stroll", "Hadimba Temple", "Old Manali cafés"],
+      ["Rohtang Pass day trip", "Snow photography", "Beas River views", "Local market"],
+      ["Solang Valley activities", "Paragliding or short adventure", "Vashisht hot springs", "Sunset views"],
+      ["Naggar Castle", "Jana Falls", "Shopping"],
+      ["Monastery visit", "Departure preparation"],
     ],
     tips: [
-      "Rohtang Pass requires a permit — book online in advance at https://rohtangpermits.nic.in",
-      "Best time for snow: December to February; best for roads: May to October",
-      "Carry warm clothes even in summer — temperatures drop significantly at night",
-      "Try Sidu (local bread), Dham (traditional meal), and Trout fish",
-      "Book inner line permits in advance if traveling to Spiti Valley or Leh",
+      "Carry warm clothes even in summer.",
+      "Book permits in advance for certain routes.",
+      "Best snow season: December to February.",
+      "Try local Himachali food and trout.",
     ],
   },
 };
@@ -150,96 +157,121 @@ function getDestinationKey(dest: string): string | null {
 }
 
 function parseBudget(budget: string): number {
-  const num = parseFloat(budget.replace(/[^0-9.]/g, ''));
-  return isNaN(num) ? 20000 : num;
+  const num = Number(String(budget).replace(/[^0-9.]/g, ""));
+  return Number.isFinite(num) ? num : 0;
 }
 
 function formatCurrency(amount: number): string {
-  if (amount <= 0) return '₹0';
-  return `₹${Math.round(amount).toLocaleString('en-IN')}`;
+  const safeAmount = Math.max(0, Math.round(amount));
+  return `₹${safeAmount.toLocaleString("en-IN")}`;
+}
+
+function getInterestList(interests: string): string[] {
+  const list = interests
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  return list.length > 0 ? list : ["sightseeing", "food", "culture"];
+}
+
+function getFeasibilityNote(destination: string, days: number, budget: number, minDailyBudget: number): string | null {
+  const recommended = days * minDailyBudget;
+  if (budget >= recommended) return null;
+
+  return `This budget is quite low for a ${days}-day trip to ${destination}. So this itinerary focuses on low-cost activities, shared transport, simple meals, and budget stays. A more comfortable recommended budget would be around ${formatCurrency(
+    recommended
+  )}.`;
+}
+
+function buildBudgetAwareCosts(perDayBudget: number): number[] {
+  if (perDayBudget <= 1000) {
+    return [0.08, 0.12, 0.1, 0.12, 0.1];
+  }
+  if (perDayBudget <= 2500) {
+    return [0.1, 0.18, 0.14, 0.18, 0.14];
+  }
+  return [0.12, 0.22, 0.16, 0.22, 0.16];
+}
+
+function generateLowBudgetActivities(destination: string, day: number, perDayBudget: number, interests: string[]): Activity[] {
+  const costRatios = buildBudgetAwareCosts(perDayBudget);
+
+  const templates = [
+    {
+      time: "8:00 AM",
+      activity: `Budget breakfast and local area walk`,
+      location: `${destination} local neighborhood`,
+      cost: formatCurrency(perDayBudget * costRatios[0]),
+    },
+    {
+      time: "10:30 AM",
+      activity: `Visit a free or low-cost ${interests[day % interests.length]} spot`,
+      location: `${destination} city attraction`,
+      cost: formatCurrency(perDayBudget * costRatios[1]),
+    },
+    {
+      time: "1:30 PM",
+      activity: `Affordable local lunch`,
+      location: `${destination} budget eatery`,
+      cost: formatCurrency(perDayBudget * costRatios[2]),
+    },
+    {
+      time: "4:00 PM",
+      activity: `Explore local market / public viewpoint / walking trail`,
+      location: `${destination}`,
+      cost: formatCurrency(perDayBudget * costRatios[3]),
+    },
+    {
+      time: "7:30 PM",
+      activity: `Simple dinner and rest`,
+      location: `${destination}`,
+      cost: formatCurrency(perDayBudget * costRatios[4]),
+    },
+  ];
+
+  return templates;
 }
 
 function generateGenericItinerary(destination: string, days: number, budget: number, interests: string): Itinerary {
-  const interestList = interests ? interests.split(',').map(s => s.trim()) : ['sightseeing', 'food', 'culture'];
-  const perDayBudget = budget / days;
-
+  const interestList = getInterestList(interests);
+  const perDayBudget = Math.max(200, budget / days);
   const dayPlans: Day[] = [];
-  for (let i = 1; i <= days; i++) {
-    const isFirst = i === 1;
-    const isLast = i === days;
-    const activities: Activity[] = [
-      {
-        time: isFirst ? '2:00 PM' : '7:00 AM',
-        activity: isFirst ? `Arrive in ${destination} and check into hotel` : `Morning walk and breakfast at a local café`,
-        location: isFirst ? `${destination} Airport/Station` : `Near hotel`,
-        cost: isFirst ? formatCurrency(perDayBudget * 0.4) : formatCurrency(perDayBudget * 0.08),
-      },
-      {
-        time: isFirst ? '5:00 PM' : '10:00 AM',
-        activity: isFirst
-          ? `Explore the main market and grab dinner`
-          : `Visit key attraction — ${interestList[i % interestList.length]} focused tour`,
-        location: `${destination} city center`,
-        cost: formatCurrency(perDayBudget * 0.15),
-      },
-      {
-        time: '1:00 PM',
-        activity: `Lunch at a popular local restaurant`,
-        location: `${destination} restaurant district`,
-        cost: formatCurrency(perDayBudget * 0.1),
-      },
-      {
-        time: '3:00 PM',
-        activity: isLast
-          ? `Last-minute shopping and souvenir hunting`
-          : `Afternoon exploration — ${interestList[(i + 1) % interestList.length]} experience`,
-        location: isLast ? `${destination} local market` : `${destination} attractions`,
-        cost: formatCurrency(perDayBudget * 0.15),
-      },
-      {
-        time: '7:00 PM',
-        activity: isLast ? `Farewell dinner and depart` : `Evening dinner and leisure`,
-        location: `${destination}`,
-        cost: formatCurrency(perDayBudget * 0.12),
-      },
-    ];
 
-    const titles = [
-      'Arrival & First Impressions',
-      'Culture & Heritage Exploration',
-      'Nature & Adventure',
-      'Local Life & Hidden Gems',
-      'Markets & Culinary Journey',
-      'Relaxation & Leisure',
-      'Farewell & Memories',
-    ];
+  for (let i = 1; i <= days; i++) {
+    const isLast = i === days;
+    const activities = generateLowBudgetActivities(destination, i, perDayBudget, interestList);
 
     dayPlans.push({
       day: i,
-      title: isLast ? 'Departure Day' : titles[(i - 1) % titles.length],
+      title: isLast ? "Departure Day" : `Day ${i} Exploration`,
       activities,
     });
   }
 
+  const genericMinDailyBudget = 2500;
+  const feasibilityNote = getFeasibilityNote(destination, days, budget, genericMinDailyBudget);
+
   return {
     title: `${days} Days in ${destination}`,
     destination,
-    duration: `${days} Day${days > 1 ? 's' : ''} / ${Math.max(days - 1, 1)} Night${days > 1 ? 's' : ''}`,
+    duration: `${days} Day${days > 1 ? "s" : ""} / ${Math.max(days - 1, 1)} Night${days > 1 ? "s" : ""}`,
     budget: formatCurrency(budget),
-    summary: `Discover the best of ${destination} in ${days} days with this carefully curated itinerary covering top sights, local cuisine, and authentic experiences tailored to your interests: ${interestList.join(', ')}.`,
+    summary: feasibilityNote
+      ? feasibilityNote
+      : `Discover ${destination} in ${days} days with a plan tailored to your interests: ${interestList.join(", ")}.`,
     locations: [
-      { name: `${destination} City Center`, lat: 0, lng: 0, description: 'Main hub of the city' },
-      { name: `${destination} Attractions`, lat: 0, lng: 0, description: 'Key tourist spots' },
-      { name: `${destination} Local Market`, lat: 0, lng: 0, description: 'Shopping and street food' },
+      { name: `${destination} City Center`, lat: 0, lng: 0, description: "Central area of the destination" },
+      { name: `${destination} Local Market`, lat: 0, lng: 0, description: "Budget shopping and food area" },
+      { name: `${destination} Main Attraction`, lat: 0, lng: 0, description: "Popular sightseeing area" },
     ],
     days: dayPlans,
     tips: [
-      `Research local customs and dress code before visiting ${destination}`,
-      `Carry cash as many local vendors may not accept cards`,
-      `Book accommodation in advance, especially during peak season`,
-      `Try the local street food — it's often the most authentic experience`,
-      `Download offline maps of ${destination} in case you lose connectivity`,
-      `Keep emergency contacts and your hotel address handy at all times`,
+      "Use public transport or shared rides to save money.",
+      "Choose simple local eateries over premium restaurants.",
+      "Book budget accommodation in advance.",
+      "Keep some cash for small vendors and local transport.",
+      ...(feasibilityNote ? ["Consider increasing the budget or reducing the duration for a more comfortable experience."] : []),
     ],
     totalEstimatedCost: formatCurrency(budget),
   };
@@ -253,39 +285,49 @@ function generateKnownItinerary(
   interests: string
 ): Itinerary {
   const data = DESTINATION_DATA[destKey];
-  const perDay = budget / days;
+  const perDayBudget = Math.max(200, budget / days);
+  const feasibilityNote = getFeasibilityNote(destination, days, budget, data.minimumRecommendedDailyBudget);
+  const costRatios = buildBudgetAwareCosts(perDayBudget);
 
   const dayPlans: Day[] = [];
+
   for (let i = 0; i < days; i++) {
     const dayActivities = data.activities[i % data.activities.length];
+
     const activities: Activity[] = dayActivities.map((act, j) => {
-      const times = ['7:00 AM', '10:00 AM', '1:00 PM', '4:00 PM', '7:00 PM', '9:00 PM'];
-      const costRatios = [0.05, 0.15, 0.12, 0.15, 0.13, 0.0];
+      const times = ["7:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"];
+      const ratio = costRatios[j] ?? 0.1;
+
       return {
         time: times[j] || `${8 + j * 2}:00 AM`,
-        activity: act,
+        activity:
+          feasibilityNote && j === 1
+            ? `${act} (budget version)`
+            : act,
         location: data.locations[j % data.locations.length]?.name || destination,
-        cost: formatCurrency(perDay * (costRatios[j] || 0.1)),
+        cost: formatCurrency(perDayBudget * ratio),
       };
     });
 
-    const titles = ['Arrival & Orientation', 'Cultural Immersion', 'Nature & Wildlife', 'Adventure & Activities', 'Local Experiences', 'Shopping & Relaxation', 'Farewell'];
     dayPlans.push({
       day: i + 1,
-      title: i === days - 1 ? 'Farewell & Departure' : titles[i % titles.length],
+      title: i === days - 1 ? "Farewell & Departure" : `Day ${i + 1} Highlights`,
       activities,
     });
   }
 
   return {
-    title: `${days} Magical Days in ${destination}`,
+    title: `${days} Days in ${destination}`,
     destination,
-    duration: `${days} Day${days > 1 ? 's' : ''} / ${Math.max(days - 1, 1)} Night${days > 1 ? 's' : ''}`,
+    duration: `${days} Day${days > 1 ? "s" : ""} / ${Math.max(days - 1, 1)} Night${days > 1 ? "s" : ""}`,
     budget: formatCurrency(budget),
-    summary: data.summary,
+    summary: feasibilityNote ? `${data.summary} ${feasibilityNote}` : data.summary,
     locations: data.locations.slice(0, Math.min(days + 1, data.locations.length)),
     days: dayPlans,
-    tips: data.tips,
+    tips: [
+      ...data.tips,
+      ...(feasibilityNote ? ["This plan has been adjusted to stay within your stated budget."] : []),
+    ],
     totalEstimatedCost: formatCurrency(budget),
   };
 }
@@ -306,30 +348,48 @@ Deno.serve(async (req: Request) => {
 
     if (!destination || !duration || !budget) {
       return new Response(
-        JSON.stringify({ error: "Missing required fields: destination, duration, budget" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        JSON.stringify({
+          error: "Missing required fields: destination, duration, budget",
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
       );
     }
 
-    const days = Math.min(Math.max(parseInt(String(duration)) || 3, 1), 14);
+    const days = Math.min(Math.max(parseInt(String(duration), 10) || 3, 1), 14);
     const budgetNum = parseBudget(String(budget));
-    const destKey = getDestinationKey(destination);
 
-    let itinerary: Itinerary;
-    if (destKey) {
-      itinerary = generateKnownItinerary(destKey, destination, days, budgetNum, interests || '');
-    } else {
-      itinerary = generateGenericItinerary(destination, days, budgetNum, interests || '');
+    if (!Number.isFinite(budgetNum) || budgetNum <= 0) {
+      return new Response(
+        JSON.stringify({
+          error: "Please enter a valid budget greater than 0.",
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
-    return new Response(
-      JSON.stringify({ itinerary }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    const destKey = getDestinationKey(destination);
+    const itinerary = destKey
+      ? generateKnownItinerary(destKey, destination, days, budgetNum, interests || "")
+      : generateGenericItinerary(destination, days, budgetNum, interests || "");
+
+    return new Response(JSON.stringify({ itinerary }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (err) {
     return new Response(
-      JSON.stringify({ error: err instanceof Error ? err.message : "Internal server error" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({
+        error: err instanceof Error ? err.message : "Internal server error",
+      }),
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      }
     );
   }
 });

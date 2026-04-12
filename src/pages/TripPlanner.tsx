@@ -129,11 +129,14 @@ export default function TripPlanner() {
       title: itinerary.title,
       destination: itinerary.destination,
       duration: itinerary.duration,
-      budget: itinerary.totalEstimatedCost,
+      budget: budget.trim(),
       summary: itinerary.summary,
-      itinerary_data: itinerary as unknown as Record<string, unknown>,
+      itinerary_data: {
+        ...itinerary,
+        userEnteredBudget: budget.trim(),
+        estimatedCost: itinerary.totalEstimatedCost,
+      } as unknown as Record<string, unknown>,
     });
-
     setSaving(false);
 
     if (error) {
