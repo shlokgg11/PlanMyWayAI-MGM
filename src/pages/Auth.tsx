@@ -37,7 +37,7 @@ export default function Auth() {
           options: { data: { full_name: fullName } },
         });
         if (error) throw error;
-        setSuccess('Account created! You can now sign in.');
+        setSuccess('Account created! Please check your email and verify your account before signing in.');
         setIsLogin(true);
       }
     } catch (err: unknown) {
