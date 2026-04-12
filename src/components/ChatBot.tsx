@@ -14,9 +14,8 @@ export default function ChatBot({ onClose }: Props) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'bot',
-      text: "Namaste! I'm your PlanMyWay-AI assistant. Ask me anything about destinations, budgets, itineraries, or travel tips.",
-    },
-  ]);
+      text: "Namaste! I'm your PlanMyWay-AI assistant. I can help you with destinations, budgets, travel tips, and custom trip ideas."
+    }]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);

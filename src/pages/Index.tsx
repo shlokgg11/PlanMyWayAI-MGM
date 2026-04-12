@@ -315,7 +315,7 @@ export default function Index() {
                 icon: MapPin,
                 label: 'Location',
                 value: 'Mumbai, India',
-                href: '#',
+                href:  'https://www.google.com/maps/search/?api=1&query=Mumbai+India'
               },
             ].map(({ icon: Icon, label, value, href }) => (
               <a
