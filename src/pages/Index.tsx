@@ -48,20 +48,20 @@ const destinations = [
     ],
     duration: '4 Days / 3 Nights',
   },
-  {
-    id: 'amritsar',
-    price: '12,000',
-    name: 'Amritsar',
-    tagline: 'The Golden City',
-    image:
-      'https://images.pexels.com/photos/3581369/pexels-photo-3581369.jpeg?auto=compress&cs=tinysrgb&w=800',
-    highlights: [
-      'Golden Temple visit',
-      'Wagah Border ceremony',
-      'Jallianwala Bagh memorial',
-      'Street food trail',
-    ],
-    duration: '3 Days / 2 Nights',
+    {
+      id: 'manali',
+      price: '45,000',
+      name: 'Manali',
+      tagline: 'Valley of Gods',
+      image: 'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=800',
+      highlights: [
+        'Solang Valley adventure',
+        'Rohtang Pass snow views',
+        'Hadimba Temple visit',
+        'Mall Road shopping',
+      ],
+      duration: '4 Days / 3 Nights',
+    
   },
   {
     id: 'london',
@@ -84,7 +84,7 @@ const destinations = [
     name: 'Bali',
     tagline: 'Island of Gods',
     image:
-      'https://images.pexels.com/photos/753339/pexels-photo-753339.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg?auto=compress&cs=tinysrgb&w=800',
     highlights: ['Beach clubs', 'Ubud temples', 'Rice terraces', 'Waterfalls'],
     duration: '5 Days / 4 Nights',
   },
