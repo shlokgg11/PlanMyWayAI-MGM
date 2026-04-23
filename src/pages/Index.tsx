@@ -105,11 +105,7 @@ const destinations = [
   },
 ];
 
-const stats = [
-  { icon: Users, value: '10,000+', label: 'Happy Travelers' },
-  { icon: Globe, value: '50+', label: 'Destinations' },
-  { icon: Star, value: '4.9', label: 'Average Rating' },
-];
+
 
 export default function Index() {
   const [selectedDest, setSelectedDest] = useState<
@@ -172,17 +168,29 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-8 sm:gap-16">
-          {stats.map(({ icon: Icon, value, label }) => (
-            <div key={label} className="text-center">
-              <div className="flex items-center justify-center gap-1.5 mb-1">
-                <Icon className="w-4 h-4 text-amber-400" />
-                <span className="text-white font-bold text-lg">{value}</span>
-              </div>
-              <p className="text-white/60 text-xs">{label}</p>
-            </div>
-          ))}
-        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4">
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+
+    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20">
+      <Sparkles className="w-5 h-5 text-amber-400 mx-auto mb-1" />
+      <p className="text-white font-semibold text-sm">AI Planning</p>
+      <p className="text-white/70 text-xs">Smart itineraries instantly</p>
+    </div>
+
+    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20">
+      <Globe className="w-5 h-5 text-amber-400 mx-auto mb-1" />
+      <p className="text-white font-semibold text-sm">Real Data</p>
+      <p className="text-white/70 text-xs">Live places & experiences</p>
+    </div>
+
+    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20">
+      <Users className="w-5 h-5 text-amber-400 mx-auto mb-1" />
+      <p className="text-white font-semibold text-sm">Budget Smart</p>
+      <p className="text-white/70 text-xs">Optimized for your budget</p>
+    </div>
+
+  </div>
+</div>
       </section>
 
       <section id="destinations" className="py-20 px-4">
