@@ -167,28 +167,38 @@ export default function Index() {
             </a>
           </div>
         </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-5xl px-4">
+  <div className="flex justify-center gap-6 sm:gap-12 text-center">
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4">
-  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4">
+  <div className="flex justify-center items-center gap-8 sm:gap-16 text-center">
 
-    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20">
-      <Sparkles className="w-5 h-5 text-amber-400 mx-auto mb-1" />
-      <p className="text-white font-semibold text-sm">AI Planning</p>
-      <p className="text-white/70 text-xs">Smart itineraries instantly</p>
+    <div className="flex flex-col items-center">
+      <div className="flex items-center gap-1.5">
+        <Sparkles className="w-4 h-4 text-amber-400" />
+        <span className="text-white font-semibold text-sm tracking-wide">AI</span>
+      </div>
+      <p className="text-white font-medium text-sm mt-1">Smart Planning</p>
     </div>
 
-    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20">
-      <Globe className="w-5 h-5 text-amber-400 mx-auto mb-1" />
-      <p className="text-white font-semibold text-sm">Real Data</p>
-      <p className="text-white/70 text-xs">Live places & experiences</p>
+    <div className="flex flex-col items-center">
+      <div className="flex items-center gap-1.5">
+        <Globe className="w-4 h-4 text-amber-400" />
+        <span className="text-white font-semibold text-sm tracking-wide">Live</span>
+      </div>
+      <p className="text-white font-medium text-sm mt-1">Real Data</p>
     </div>
 
-    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20">
-      <Users className="w-5 h-5 text-amber-400 mx-auto mb-1" />
-      <p className="text-white font-semibold text-sm">Budget Smart</p>
-      <p className="text-white/70 text-xs">Optimized for your budget</p>
+    <div className="flex flex-col items-center">
+      <div className="flex items-center gap-1.5">
+        <Users className="w-4 h-4 text-amber-400" />
+        <span className="text-white font-semibold text-sm tracking-wide">Budget</span>
+      </div>
+      <p className="text-white font-medium text-sm mt-1">Optimized</p>
     </div>
 
+  </div>
+</div>
   </div>
 </div>
       </section>
