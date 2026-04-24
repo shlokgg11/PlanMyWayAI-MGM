@@ -164,11 +164,12 @@ export default function TripPlanner() {
     },
     {
       key: 'budget',
-      title: 'What budget should I plan around?',
+      title: 'What budget should I plan around?(Optional)',
       subtitle: 'I’ll try to keep the trip realistic and within budget.',
       type: 'input',
       inputType: 'text',
       placeholder: 'e.g. 25000',
+      optional: true,
     },
     {
       key: 'tripType',
@@ -312,7 +313,6 @@ export default function TripPlanner() {
     if (
       !formData.destination.trim() ||
       !formData.duration.trim() ||
-      !formData.budget.trim() ||
       !formData.tripType.trim() ||
       !formData.travelStyle.trim() ||
       !formData.pace.trim() ||
@@ -344,6 +344,7 @@ export default function TripPlanner() {
         body: JSON.stringify({
           ...formData,
           duration: durationNum,
+          budget: formData.budget ? formData.budget : null, 
         }),
       });
 
@@ -670,12 +671,6 @@ export default function TripPlanner() {
                                 <MapPin className="w-3 h-3" />
                                 {act.location}
                               </span>
-                              {act.cost && act.cost !== '₹0' && (
-                                <span className="flex items-center gap-1 text-xs text-green-600 font-medium">
-                                  <IndianRupee className="w-3 h-3" />
-                                  {act.cost.replace('₹', '')}
-                                </span>
-                              )}
                             </div>
                           </div>
                         </div>
