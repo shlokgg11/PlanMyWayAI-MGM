@@ -1,6 +1,6 @@
-# 🌍 PlanMyWay-AI – Smart Travel Itinerary Generator
+PlanMyWay-AI – Smart Travel Itinerary Generator
 
-## 📌 Overview
+ Overview
 
 PlanMyWay-AI is a full-stack AI-powered travel itinerary generator that creates optimized, day-wise travel plans for any destination worldwide.
 It uses real-time travel data and AI to automatically suggest attractions, hotels, restaurants, and activities based on user preferences such as budget, duration, and interests.
@@ -9,20 +9,19 @@ The system eliminates manual trip planning by combining live APIs with AI-based 
 
 ---
 
-## 🚀 Features
+ Features
 
-* ✨ AI-generated day-wise travel itineraries
-* 💰 Budget-based trip planning and cost estimation
-* 🏨 Real hotel and restaurant suggestions
-* 📍 Live attractions data using APIs
-* 🗺️ Map-based visualization (Leaflet integration)
-* 📄 Download itinerary as PDF
-* 🔐 User authentication and saved trips
-* 🌐 Supports global destinations
+*  AI-generated day-wise travel itineraries
+*  Budget-based trip planning and cost estimation
+*  Real hotel and restaurant suggestions
+*  Live attractions data using APIs
+*  Map-based visualization (Leaflet integration)
+*  Download itinerary as PDF
+*  User authentication and saved trips
+*  Supports global destinations
 
 ---
-
-## 🛠️ Tech Stack
+ Tech Stack
 
 ### Frontend
 
@@ -45,7 +44,7 @@ The system eliminates manual trip planning by combining live APIs with AI-based 
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 
 1. User enters:
 
@@ -76,7 +75,7 @@ The system eliminates manual trip planning by combining live APIs with AI-based 
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 PlanMyWay-AI/
@@ -91,7 +90,7 @@ PlanMyWay-AI/
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 * Home Page
 ![Home](screenshots/home.png)
@@ -103,13 +102,13 @@ PlanMyWay-AI/
 ![Map](screenshots/map.png)
 ---
 
-## 🌐 Live Demo
+#Live Demo
 
 🔗https://planmywayai.netlify.app
 
 ---
 
-## 🧪 Testing
+ Testing
 
 * ✔ Login & Signup functionality tested
 * ✔ API responses validated
@@ -119,7 +118,7 @@ PlanMyWay-AI/
 
 ---
 
-## ⚠️ Limitations
+ Limitations
 
 * Depends on external APIs (rate limits may apply)
 * AI-generated suggestions may not always be 100% accurate
@@ -127,7 +126,7 @@ PlanMyWay-AI/
 
 ---
 
-## 🔮 Future Scope
+ Future Scope
 
 * Flight & hotel booking integration
 * Real-time weather & traffic updates
@@ -136,8 +135,7 @@ PlanMyWay-AI/
 * Trip sharing & collaboration features
 
 ---
-
-## 👨‍💻 Team Members
+ Team Members
 
 * Shlok Gawde
 * Aabhas Mhatre
@@ -146,7 +144,7 @@ PlanMyWay-AI/
 
 ---
 
-## 📚 References
+ References
 
 * https://arxiv.org
 * https://ijctjournal.org
@@ -154,13 +152,13 @@ PlanMyWay-AI/
 
 ---
 
-## 🙏 Acknowledgment
+ Acknowledgment
 
 Under the guidance of **Prof. Dhanashri Kane**
 
 ---
 
-## ⭐ Conclusion
+ Conclusion
 
 PlanMyWay-AI demonstrates how AI and real-time APIs can be combined to build a fully automated, intelligent travel planning system that simplifies trip organization and enhances user experience.
 
