@@ -93,13 +93,13 @@ PlanMyWay-AI/
 ## Screenshots
 
 * Home Page
-![Home](screenshots/home.png)
+![Home](https://github.com/user-attachments/assets/e4825cee-12c3-4b0d-9d4a-ad41603f4e07)
 * Trip Planner Form
-![Planner](screenshots/planner.png)
+![Planner](https://github.com/user-attachments/assets/ca29b48d-10c0-4733-8cdd-40a74787d27c)
 * Generated Itinerary
-![Itinerary](screenshots/itinerary.png)
+![Itinerary](https://github.com/user-attachments/assets/0a969363-5292-47e9-a97e-828745df441a)
 * Map View
-![Map](screenshots/map.png)
+![Map](https://github.com/user-attachments/assets/f785ce06-f288-498c-b16a-f3725216ab1c)
 ---
 
 #Live Demo
