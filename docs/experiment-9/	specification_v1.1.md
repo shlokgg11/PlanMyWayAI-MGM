@@ -1,8 +1,9 @@
 # PlanMyWay-AI — Version 1.1
 
-1. Retain all Version 1.0 features.
-2. Improve itinerary generation using travel preferences.
-3. Display itinerary locations on an interactive map.
-4. Allow users to export generated itineraries as PDF files.
-5. Improve the organization and presentation of itinerary activities.
-6. Improve error handling when itinerary generation fails.
+1. Improve the user interface for entering travel details.
+2. Improve the organization of activities into day-wise itineraries.
+3. Add improved itinerary regeneration when users want alternative plans.
+4. Improve the display of activities and travel locations on the map.
+5. Improve the handling of AI service errors.
+6. Improve the saved-trip viewing interface.
+7. Improve itinerary PDF formatting.
